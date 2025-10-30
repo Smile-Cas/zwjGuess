@@ -90,6 +90,10 @@
             $("#guess").click(function(){
                 let guessNum = $("#guess_num").val();
                 count += 1;
+                 if(count == 5 || count == 6) {
+                $("#img1").attr("src", "huai.jpg");
+                $("#img2").attr("src", "loseLiQi.jpg");
+            }
                 $("#count").text(count);
                 if(guessNum > resultNum) {
                     $("#result").text("猜大啦, 再猜猜看");
@@ -100,10 +104,6 @@
                     $("#img1").attr("src", "weilai.gif");
                     $("#img2").attr("src", "beheart.gif");
                 }
-                if(count == 5 || count == 6) {
-                $("#img1").attr("src", "huai.jpg");
-                $("#img2").attr("src", "loseLiQi.jpg");
-            }
             });
             $("#reset").click(function(){
                 count = 0;
@@ -147,6 +147,7 @@
 </body>
 
 </html>
+
 
 
 
