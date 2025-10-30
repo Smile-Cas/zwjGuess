@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伟建的猜数字小游戏</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        .title, .guess, .result {
+            animation-name: bianse;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        @keyframes bianse {
+            from {
+                color: orangered;
+            }
+            50% {
+                color: orange;
+            }
+            to {
+                color: lightcoral;
+            }
+        }
+        button {
+            background-color: orange;
+            color: gray;
+            font-weight: bold;
+            animation-name: bianse2;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            border: 1px solid orange;
+        }
+        @keyframes bianse2 {
+            from {
+                background-color: orangered;
+            }
+            50% {
+                background-color: orange;
+            }
+            to {
+                background-color: lightcoral;
+            }
+        }
+        .all, .guess_body, .result, .title {
+            width: 354px;
+        }
+        .title {
+            height: 30px;
+            text-align: center;
+        }
+        .img {
+            margin-left: 10px;
+        }
+        .reset {
+            width: 98px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="all">
+        <div class="title">
+            <span class="title">zwj1~100猜数字小游戏</span>
+        </div>
+        <div class="guess_body">
+            <label for="guess" class="guess">请猜数字: </label>
+            <input type="number" id="guess_num">
+            <button type="button" id="guess">点击猜数字</button>
+        </div>
+        <div class="img">
+            <img src="sadCas.jpg" alt="" width="150px" id="img1">
+            <img src="sadCas2.jpg" alt="" width="150px" id="img2">
+        </div>
+        <div class="result">
+            <div>
+                <span>猜数字次数:&nbsp;</span><span id="count">0</span>
+            </div> 
+            <span class="result">猜数字结果:</span><span id="result"></span>
+        </div>
+        <div class="reset">
+            <button type="button" id="reset">重新开始游戏</button>
+        </div>
+        <script>
+            let resultNum = Math.floor((Math.random() * 100) + 1);
+            console.log(resultNum);
+            let count = 0;
+            $("#guess").click(function(){
+                let guessNum = $("#guess_num").val();
+                count += 1;
+                $("#count").text(count);
+                if(guessNum > resultNum) {
+                    $("#result").text("猜大啦, 再猜猜看");
+                } else if (guessNum < resultNum) {
+                    $("#result").text("猜小啦, 再猜猜看");
+                } else {
+                    $("#result").text("恭喜你,猜中啦");
+                    $("#img1").attr("src", "weilai.gif");
+                    $("#img2").attr("src", "beheart.gif");
+                }
+                if(count == 5) {
+                $("#img1").attr("src", "huai.jpg");
+                $("#img2").attr("src", "loseLiQi.jpg");
+            }
+            });
+            $("#reset").click(function(){
+                count = 0;
+                resultNum = Math.floor((Math.random() * 100) + 1);
+                console.log(resultNum);
+                
+                $("#count").text(count);
+                $("#result").text("");
+                $("#img1").attr("src", "sadCas.jpg");
+                $("#img2").attr("src", "sadCas2.jpg");
+            });
+            $("#img1").click(function() {
+                if($("#img1").attr("src") == "sadCas.jpg") {
+                    $("#img1").attr("src", "shyCas.jpg");
+                } else if($("#img1").attr("src") == "shyCas.jpg") {
+                    $("#img1").attr("src", "happyCas.jpg");
+                } else if($("#img1").attr("src") == "happyCas.jpg") {
+                    $("#img1").attr("src", "sadCas.jpg");
+                } else if($("#img1").attr("src") == "weilai.gif") {
+                    $("#img1").attr("src", "sadCas.jpg");
+                } else {
+                    $("#img1").attr("src", "sadCas.jpg");
+                }
+            }); 
+            $("#img2").click(function() {
+                if($("#img2").attr("src") == "sadCas2.jpg") {
+                    $("#img2").attr("src", "shyCas.jpg");
+                } else if($("#img2").attr("src") == "shyCas.jpg") {
+                    $("#img2").attr("src", "happyCas.jpg");
+                } else if($("#img2").attr("src") == "happyCas.jpg") {
+                    $("#img2").attr("src", "sadCas.jpg");
+                } else if($("#img2").attr("src") == "weilai.gif") {
+                    $("#img2").attr("src", "sadCas2.jpg");
+                } else {
+                    $("#img2").attr("src", "sadCas2.jpg");
+                }
+            }); 
+
+        </script>
+    </div>
+</body>
+</html>
